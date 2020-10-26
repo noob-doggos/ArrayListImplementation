@@ -1,4 +1,5 @@
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /**
  * An implementation of MyList with an array (a longer exercise would be to
@@ -274,6 +275,10 @@ public class MyArrayList<E> implements MyList<E>
          */
         public E next()
         {
+            if (!this.hasNext())
+            {
+                throw new NoSuchElementException();
+            }
             E owo = list.get(this.index);
             this.lastIndex = this.index;
             this.index++;
@@ -285,12 +290,13 @@ public class MyArrayList<E> implements MyList<E>
          */
         public void remove()
         {
-            if (this.index <= -1)
+            if (this.lastIndex == -1)
             {
-                throw new IllegalStateException("oh poop");
+                throw new IllegalStateException();
             }
-            this.list.remove(this.lastIndex);
+            this.list.remove(lastIndex);
             this.index--;
+            this.lastIndex = -1;
         }
     }
 
