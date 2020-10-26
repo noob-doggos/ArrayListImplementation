@@ -35,8 +35,7 @@ public class MyArrayList<E> implements MyList<E>
     @SuppressWarnings("unchecked")
     public MyArrayList()
     {
-        this.items = (E[]) new Object[DEFAULT_CAPACITY];
-        this.size = 0;
+        this(DEFAULT_CAPACITY);
     }
 
     /**
@@ -164,7 +163,7 @@ public class MyArrayList<E> implements MyList<E>
             arrayCompacted[actualIndex] = this.items[i];
             actualIndex++;
         }
-        
+
         this.size--;
 
         // let's gc do its work
