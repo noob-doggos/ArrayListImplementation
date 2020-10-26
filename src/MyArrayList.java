@@ -32,7 +32,6 @@ public class MyArrayList<E> implements MyList<E>
     /**
      * Constructs a MyArrayList with a default capacity
      */
-    @SuppressWarnings("unchecked")
     public MyArrayList()
     {
         this(DEFAULT_CAPACITY);
