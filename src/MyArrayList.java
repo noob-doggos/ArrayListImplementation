@@ -200,6 +200,7 @@ public class MyArrayList<E> implements MyList<E>
         }
 
         this.items = itemsExpanded;
+        this.size++;
 
         return true;
     }
