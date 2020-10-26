@@ -285,7 +285,12 @@ public class MyArrayList<E> implements MyList<E>
          */
         public void remove()
         {
+            if (this.index <= -1)
+            {
+                throw new IllegalStateException("oh poop");
+            }
             this.list.remove(this.lastIndex);
+            this.index--;
         }
     }
 
