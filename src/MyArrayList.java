@@ -62,10 +62,10 @@ public class MyArrayList<E> implements MyList<E>
     {
         // If there is no room in the array items
         // Make room for the new element
-        if (this.size >= this.items.length)
+        if (this.size + 1 > this.items.length)
         {
             E[] itemsExpanded = (E[]) new Object[this.items.length + 1];
-            for (int i = 0; i < this.items.length; i++)
+            for (int i = 0; i < this.size; i++)
             {
                 itemsExpanded[i] = this.items[i];
             }
@@ -82,9 +82,10 @@ public class MyArrayList<E> implements MyList<E>
     /**
      * Empties this List
      */
+    @SuppressWarnings("unchecked")
     public void clear()
     {
-        this.items = null;
+        this.items = (E[]) new Object[DEFAULT_CAPACITY];
         this.size = 0;
     }
 
@@ -153,7 +154,7 @@ public class MyArrayList<E> implements MyList<E>
 
         int actualIndex = 0;
 
-        for (int i = 0; i < this.items.length; i++)
+        for (int i = 0; i < this.size; i++)
         {
             if (i == index)
             {
@@ -162,6 +163,8 @@ public class MyArrayList<E> implements MyList<E>
             arrayCompacted[actualIndex] = this.items[i];
             actualIndex++;
         }
+        
+        this.size--;
 
         // let's gc do its work
         this.items = arrayCompacted;
@@ -183,7 +186,7 @@ public class MyArrayList<E> implements MyList<E>
     @SuppressWarnings("unchecked")
     public boolean add(int index, E o)
     {
-        E[] itemsExpanded = (E[]) new Object[this.size + 1 >= this.items.length ? this.items.length + 1
+        E[] itemsExpanded = (E[]) new Object[this.size + 1 > this.items.length ? this.items.length + 1
             : this.items.length];
         // one way: add at the end and then shift the elements around
         for (int i = 0; i < index; i++)
@@ -281,7 +284,7 @@ public class MyArrayList<E> implements MyList<E>
          */
         public void remove()
         {
-            
+            this.list.remove(this.lastIndex);
         }
     }
 
